@@ -3,424 +3,442 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Pioneer DEH-X2600UI</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>TSJ Stereo</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#0c0c0c;width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono','Courier New',monospace;}
-.hu-wrap{background:#0c0c0c;padding:10px 8px 14px;font-family:'Share Tech Mono','Courier New',monospace;width:100%;max-width:600px;}
-.hu-shell{background:linear-gradient(180deg,#1c1c1c 0%,#111 60%,#0d0d0d 100%);border:2px solid #2a2a2a;border-radius:5px;overflow:hidden;position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 6px 24px rgba(0,0,0,0.9);}
-.hu-shell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#3a3a3a,#444,#3a3a3a,transparent);}
-.hu-top{display:flex;align-items:stretch;padding:10px 12px 8px;gap:8px;}
-.knob-area{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:52px;flex-shrink:0;}
-.main-knob{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#666,#222 55%,#111);border:2px solid #333;position:relative;box-shadow:0 2px 8px rgba(0,0,0,0.7),inset 0 1px 0 rgba(255,255,255,0.08);}
-.main-knob::after{content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);width:3px;height:8px;background:#ff2200;border-radius:1px;}
-.src-btn{font-size:7px;color:#ff2200;background:#1a0a00;border:1px solid #ff2200;border-radius:2px;padding:2px 5px;cursor:pointer;letter-spacing:1px;text-align:center;width:100%;}
-.display-panel{flex:1;background:#000;border:1px solid #1a1a1a;border-radius:3px;overflow:hidden;padding:6px 8px 8px;position:relative;box-shadow:inset 0 0 12px rgba(0,0,0,0.8);display:flex;flex-direction:column;}
-.dot-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
-.dot-cluster{display:grid;grid-template-columns:repeat(8,4px);grid-template-rows:repeat(2,4px);gap:1px;}
-.dot{width:4px;height:4px;border-radius:50%;background:#1a3a1a;}
-.dot.on{background:#00dd33;box-shadow:0 0 3px #00dd33}
-.dot.dim{background:#0d2a0d}
-.brand-tag{font-size:9px;color:#ff2200;letter-spacing:3px;text-shadow:0 0 6px rgba(255,34,0,0.5);}
-.sub-tags{display:flex;gap:6px;}
-.sub-tag{font-size:7px;color:#222;letter-spacing:1px;}
-.sub-tag.active{color:#1db954;text-shadow:0 0 4px rgba(29,185,84,0.6)}
-.display-main{position:relative;height:34px;overflow:hidden;margin-bottom:3px;}
-.display-main::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.12) 3px,rgba(0,0,0,0.12) 4px);pointer-events:none;z-index:2;}
-.scroll-track{position:absolute;top:0;left:0;white-space:nowrap;display:flex;align-items:center;height:100%;}
-.display-text{font-size:26px;font-family:'Share Tech Mono','Courier New',monospace;font-weight:bold;color:#fff;text-shadow:0 0 8px rgba(255,255,255,0.4),0 0 2px rgba(255,255,255,0.8);letter-spacing:2px;line-height:1;white-space:nowrap;}
-.divider{height:1px;background:#111;margin:3px 0;box-shadow:0 1px 0 #1a1a1a;}
-.spectrum-section{flex:1;min-height:44px;overflow:hidden;}
-.spectrum-grid{display:flex;gap:2px;align-items:flex-end;height:100%;width:100%;}
-.bar-col{display:flex;flex-direction:column;gap:1px;align-items:center;flex:1;justify-content:flex-end;}
-.px-block{width:100%;height:3px;background:#111;}
-.px-block.g{background:#00ff41;box-shadow:0 0 2px #00ff41}
-.px-block.y{background:#ffff00;box-shadow:0 0 2px #ffff00}
-.px-block.o{background:#ff8800;box-shadow:0 0 2px #ff8800}
-.px-block.r{background:#ff1100;}
-.px-block.pk{background:#fff;box-shadow:0 0 4px #fff}
-.right-area{display:flex;flex-direction:column;align-items:center;justify-content:space-between;width:38px;flex-shrink:0;gap:4px;}
-.mixtrax-slot{width:30px;height:28px;background:#111;border:1px solid #222;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:6px;color:#333;text-align:center;line-height:1.2;}
-.small-btn{font-family:'Share Tech Mono',monospace;font-size:7px;color:#666;background:#0f0f0f;border:1px solid #222;border-radius:2px;padding:3px 2px;cursor:pointer;text-align:center;width:100%;transition:color 0.1s,border-color 0.1s;}
-.small-btn:hover{color:#ff2200;border-color:#ff2200}
-.mic-btn{font-family:'Share Tech Mono',monospace;font-size:7px;background:#0a1a0a;border:1px solid #00ff41;border-radius:2px;padding:3px 2px;cursor:pointer;text-align:center;width:100%;color:#00ff41;transition:all 0.1s;}
-.mic-btn.active{color:#ff2200;border-color:#ff2200;background:#1a0000}
-.hu-bottom{background:#0a0a0a;border-top:1px solid #1a1a1a;display:flex;align-items:center;justify-content:space-between;padding:6px 12px;gap:4px;}
-.red-btn{font-family:'Share Tech Mono',monospace;font-size:8px;color:#ff2200;background:#1a0500;border:1px solid #ff2200;border-radius:2px;padding:4px 6px;cursor:pointer;min-width:26px;text-align:center;}
-.red-btn:hover{background:#2d0800}
-.num-btns{display:flex;gap:3px;}
-.num-btn{width:19px;height:16px;font-size:8px;color:#ff2200;background:#100500;border:1px solid #3a1000;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;}
-.jack{width:10px;height:10px;border-radius:50%;background:#111;border:1px solid #2a2a2a;}
 
-/* LOGIN OVERLAY */
-.login-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.95);z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px;}
-.sp-login-btn{font-family:'Share Tech Mono',monospace;font-size:11px;color:#000;background:#1db954;border:none;border-radius:3px;padding:10px 20px;cursor:pointer;letter-spacing:1px;font-weight:bold;width:100%;}
-.sp-login-btn:hover{background:#1ed760}
-.login-label{font-size:8px;color:#555;letter-spacing:2px;text-align:center;}
-.status-txt{font-size:9px;color:#1db954;letter-spacing:1px;text-align:center;min-height:14px;}
+html, body {
+  background:#000;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:'Share Tech Mono','Courier New',monospace;
+}
+
+.screen {
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  padding: 10px 14px 8px;
+  background:#000;
+}
+
+/* ── TOP ROW ── */
+.top-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:4px;
+  flex-shrink:0;
+}
+
+.dot-cluster {
+  display:grid;
+  grid-template-columns:repeat(8,5px);
+  grid-template-rows:repeat(2,5px);
+  gap:2px;
+}
+.dot { width:5px;height:5px;border-radius:50%;background:#0d2a0d; }
+.dot.on { background:#00dd33;box-shadow:0 0 3px #00dd33 }
+
+.brand {
+  font-size:13px;
+  letter-spacing:6px;
+  color:#ff2200;
+  text-shadow:0 0 8px rgba(255,34,0,0.5);
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.right-tags {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.tag {
+  font-size:9px;
+  color:#1db954;
+  letter-spacing:2px;
+  text-shadow:0 0 6px rgba(29,185,84,0.5);
+}
+.mic-btn {
+  font-family:'Share Tech Mono',monospace;
+  font-size:8px;
+  color:#333;
+  background:transparent;
+  border:1px solid #222;
+  border-radius:2px;
+  padding:2px 6px;
+  cursor:pointer;
+  letter-spacing:1px;
+  transition:all 0.15s;
+}
+.mic-btn.active { color:#00ff41;border-color:#00ff41;text-shadow:0 0 4px #00ff41; }
+.mic-btn:hover { color:#555;border-color:#444; }
+
+/* ── SONG TITLE ── */
+.song-area {
+  flex-shrink:0;
+  height:52px;
+  overflow:hidden;
+  position:relative;
+  margin-bottom:6px;
+}
+.song-area::after {
+  content:'';
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 4px,rgba(0,0,0,0.08) 4px,rgba(0,0,0,0.08) 5px);
+  pointer-events:none;z-index:2;
+}
+.scroll-track {
+  position:absolute;top:0;left:0;
+  white-space:nowrap;
+  display:flex;align-items:center;
+  height:100%;
+}
+.song-text {
+  font-size:44px;
+  font-weight:bold;
+  color:#fff;
+  letter-spacing:3px;
+  line-height:1;
+  white-space:nowrap;
+  text-shadow:0 0 12px rgba(255,255,255,0.3);
+}
+
+/* ── DIVIDER ── */
+.divider {
+  height:1px;
+  background:#111;
+  flex-shrink:0;
+  margin-bottom:6px;
+}
+
+/* ── SPECTRUM ── */
+.spectrum-wrap {
+  flex:1;
+  overflow:hidden;
+  position:relative;
+}
+.spectrum-grid {
+  display:flex;
+  gap:3px;
+  align-items:flex-end;
+  height:100%;
+  width:100%;
+}
+.bar-col {
+  display:flex;flex-direction:column;
+  gap:2px;align-items:center;
+  flex:1;justify-content:flex-end;
+}
+.px-block { width:100%;height:4px;background:#0a0a0a; }
+.px-block.g { background:#00ff41; }
+.px-block.y { background:#ccff00; }
+.px-block.o { background:#ff8800; }
+.px-block.r { background:#ff2200; }
+.px-block.pk { background:#fff;box-shadow:0 0 5px #fff; }
+
+/* ── LOGIN OVERLAY ── */
+.login-overlay {
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:#000;
+  z-index:100;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:16px;
+  padding:24px;
+}
+.sp-btn {
+  font-family:'Share Tech Mono',monospace;
+  font-size:13px;color:#000;
+  background:#1db954;border:none;border-radius:3px;
+  padding:12px 32px;cursor:pointer;letter-spacing:2px;font-weight:bold;
+  width:100%;max-width:280px;
+}
+.sp-btn:hover{background:#1ed760}
+.login-hint { font-size:9px;color:#333;letter-spacing:2px;text-align:center; }
+.login-status { font-size:10px;color:#1db954;letter-spacing:1px;text-align:center;min-height:16px; }
+
+/* ── BOTTOM CONTROLS (invisible but tappable) ── */
+.tap-controls {
+  position:fixed;
+  bottom:0;left:0;right:0;
+  display:flex;
+  height:44px;
+  z-index:50;
+}
+.tap-zone {
+  flex:1;cursor:pointer;
+}
 </style>
 </head>
 <body>
 
-<div class="hu-wrap">
-<div class="hu-shell">
-  <div class="hu-top">
+<div class="login-overlay" id="loginOverlay">
+  <div class="dot-cluster" id="dotsLogin" style="margin-bottom:8px"></div>
+  <span style="font-size:11px;color:#ff2200;letter-spacing:4px">TSJ Stereo</span>
+  <button class="sp-btn" onclick="startLogin()">&#9654; KOBLE TIL SPOTIFY</button>
+  <span class="login-status" id="statusTxt">TRYKK FOR Å LOGGE INN</span>
+  <span class="login-hint">tobbsenn.github.io/Y2K-Carsterio</span>
+</div>
 
-    <div class="knob-area">
-      <div class="main-knob"></div>
-      <div class="src-btn">SRC</div>
-      <div class="src-btn" style="color:#ff8800;border-color:#ff8800">BAND</div>
-    </div>
-
-    <div class="display-panel" style="position:relative">
-      <!-- LOGIN OVERLAY -->
-      <div class="login-overlay" id="loginOverlay">
-        <span class="login-label">PIONEER DEH-X2600UI</span>
-        <button class="sp-login-btn" onclick="startLogin()">&#9654; KOBLE TIL SPOTIFY</button>
-        <span class="status-txt" id="statusTxt">TRYKK FOR Å LOGGE INN</span>
-        <span class="login-label" id="waitLabel" style="display:none">Logger inn... ikke lukk dette vinduet</span>
-      </div>
-
-      <div class="dot-row">
-        <div class="dot-cluster" id="dots"></div>
-        <span class="brand-tag">Pioneer</span>
-        <div class="sub-tags"><span class="sub-tag active">SPOTIFY</span></div>
-      </div>
-      <div class="display-main">
-        <div class="scroll-track" id="scrollTrack">
-          <span class="display-text" id="displayText">PIONEER DEH-X2600UI</span>
-        </div>
-      </div>
-      <div class="divider"></div>
-      <div class="spectrum-section">
-        <div class="spectrum-grid" id="specGrid"></div>
-      </div>
-    </div>
-
-    <div class="right-area">
-      <div class="mixtrax-slot">MIX<br>TRAX</div>
-      <button class="small-btn" onclick="spotifyNext()">NEXT&#9654;</button>
+<div class="screen">
+  <!-- TOP -->
+  <div class="top-row" style="position:relative">
+    <div class="dot-cluster" id="dots"></div>
+    <span class="brand">P i o n e e r</span>
+    <div class="right-tags">
       <button class="mic-btn" id="micBtn" onclick="toggleMic()">MIC</button>
+      <span class="tag" id="srcTag">SPOTIFY</span>
     </div>
   </div>
 
-  <div class="hu-bottom">
-    <button class="red-btn" onclick="spotifyPrev()">&#9664;&#9664;</button>
-    <button class="red-btn" id="playBtn" onclick="spotifyPlayPause()">&#9654; II</button>
-    <button class="red-btn" onclick="spotifyNext()">&#9654;&#9654;</button>
-    <span style="font-size:7px;color:#333;letter-spacing:1px">TRACK</span>
-    <div class="num-btns" id="numBtns"></div>
-    <div class="jack"></div>
+  <!-- SONG TITLE -->
+  <div class="song-area">
+    <div class="scroll-track" id="scrollTrack">
+      <span class="song-text" id="songText">TSJ Stereo </span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SPECTRUM -->
+  <div class="spectrum-wrap">
+    <div class="spectrum-grid" id="specGrid"></div>
   </div>
 </div>
+
+<!-- Invisible tap zones: prev / play-pause / next -->
+<div class="tap-controls">
+  <div class="tap-zone" onclick="spotifyPrev()"></div>
+  <div class="tap-zone" onclick="spotifyPlayPause()"></div>
+  <div class="tap-zone" onclick="spotifyNext()"></div>
 </div>
 
 <script>
 const CLIENT_ID = 'b7ecf776107d4d2d8381ca41d8c93083';
 const REDIRECT_URI = 'https://tobbsenn.github.io/Y2K-Carsterio/';
 const SCOPES = 'user-read-playback-state user-modify-playback-state user-read-currently-playing';
-const BANDS = 20, ROWS = 12;
+const BANDS = 28, ROWS = 14;
 
-let accessToken = null, refreshToken = null, tokenExpiry = 0;
-let smoothed = new Array(BANDS).fill(0);
-let peakHold = new Array(BANDS).fill(0), peakTimer = new Array(BANDS).fill(0);
-let specAnim = null, scrollAnim = null, scrollX = 0, speed = 1.1;
-let flipTimer = null, showArtist = false, _title = '', _artist = '';
-let currentTrackId = null, currentEnergy = 0.5, currentTempo = 120, isPlaying = false;
-let micActive = false, audioCtx = null, analyser = null, dataArray = null;
-let codeVerifier = null, pollWindow = null;
+let accessToken=null,refreshToken=null,tokenExpiry=0;
+let smoothed=new Array(BANDS).fill(0);
+let peakHold=new Array(BANDS).fill(0),peakTimer=new Array(BANDS).fill(0);
+let specAnim=null,scrollAnim=null,scrollX=0,speed=1.3;
+let flipTimer=null,showArtist=false,_title='',_artist='';
+let currentTrackId=null,currentEnergy=0.5,currentTempo=120,isPlaying=false;
+let micActive=false,audioCtx=null,analyser=null,dataArray=null;
+let codeVerifier=null,pollWindow=null;
 
-// ── PKCE HELPERS ──
-function rndStr(len) {
-  const a = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
-  let s = ''; for (let i = 0; i < len; i++) s += a[Math.floor(Math.random() * a.length)]; return s;
-}
-async function sha256(plain) {
-  return crypto.subtle.digest('SHA-256', new TextEncoder().encode(plain));
-}
-function base64url(buf) {
-  return btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-}
+// PKCE
+function rndStr(len){const a='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';let s='';for(let i=0;i<len;i++)s+=a[Math.floor(Math.random()*a.length)];return s;}
+async function sha256(p){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(p));}
+function b64url(b){return btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
 
-// ── CHECK IF WE LANDED BACK HERE WITH ?code= (mobile same-tab flow) ──
-(function checkRedirect() {
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get('code');
-  if (!code) return;
-  // Clean URL
-  history.replaceState({}, '', window.location.pathname);
-  // Store code for the exchange
-  localStorage.setItem('sp_code', code);
-  // If we have a verifier, exchange immediately
-  const cv = localStorage.getItem('cv');
-  if (cv) {
-    codeVerifier = cv;
-    exchangeCode(code);
-  }
+// Dots
+function buildDots(id){
+  const el=document.getElementById(id);if(!el)return;
+  const pat=[1,1,0,1,1,0,1,1,1,0,1,0,1,0,1,1];
+  pat.forEach(on=>{const d=document.createElement('div');d.className='dot'+(on?' on':'');el.appendChild(d);});
+}
+buildDots('dots');buildDots('dotsLogin');
+
+// Check redirect back with ?code=
+(function checkRedirect(){
+  const p=new URLSearchParams(window.location.search);
+  const code=p.get('code');
+  if(!code)return;
+  history.replaceState({},'',window.location.pathname);
+  localStorage.setItem('sp_code',code);
+  const cv=localStorage.getItem('cv');
+  if(cv){codeVerifier=cv;exchangeCode(code);}
 })();
 
-async function startLogin() {
-  codeVerifier = rndStr(128);
-  localStorage.setItem('cv', codeVerifier);
-  const challenge = base64url(await sha256(codeVerifier));
-  const state = rndStr(16);
-  localStorage.setItem('sp_state', state);
-
-  const url = `https://accounts.spotify.com/authorize` +
-    `?client_id=${CLIENT_ID}` +
-    `&response_type=code` +
-    `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}` +
-    `&scope=${encodeURIComponent(SCOPES)}` +
-    `&state=${state}` +
-    `&code_challenge_method=S256` +
-    `&code_challenge=${challenge}`;
-
-  document.getElementById('statusTxt').textContent = 'ÅPNER SPOTIFY...';
-  document.getElementById('waitLabel').style.display = 'block';
-
-  // Try popup first (desktop), fall back to same tab (mobile)
-  try {
-    pollWindow = window.open(url, 'spotify_auth', 'width=500,height=700,noopener=no');
-    if (!pollWindow || pollWindow.closed) throw new Error('blocked');
-    // Poll localStorage for the code (set by redirect back to this page in popup)
-    document.getElementById('statusTxt').textContent = 'VENTER PÅ INNLOGGING...';
-    startPollingForCode();
-  } catch (e) {
-    // Popup blocked (common on mobile) — go full page
-    window.location.href = url;
-  }
-}
-
-function startPollingForCode() {
-  const interval = setInterval(async () => {
-    const code = localStorage.getItem('sp_code');
-    if (code) {
-      clearInterval(interval);
-      localStorage.removeItem('sp_code');
-      codeVerifier = localStorage.getItem('cv');
-      if (pollWindow && !pollWindow.closed) pollWindow.close();
-      document.getElementById('statusTxt').textContent = 'KOBLER TIL...';
-      await exchangeCode(code);
-    }
-  }, 500);
-}
-
-async function exchangeCode(code) {
-  try {
-    const resp = await fetch('https://accounts.spotify.com/api/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        grant_type: 'authorization_code',
-        code,
-        redirect_uri: REDIRECT_URI,
-        client_id: CLIENT_ID,
-        code_verifier: codeVerifier
-      })
-    });
-    const data = await resp.json();
-    if (data.access_token) {
-      accessToken = data.access_token;
-      tokenExpiry = Date.now() + data.expires_in * 1000;
-      if (data.refresh_token) { refreshToken = data.refresh_token; localStorage.setItem('sp_refresh', refreshToken); }
-      localStorage.removeItem('cv');
-      onLoggedIn();
-    } else {
-      document.getElementById('statusTxt').textContent = 'FEIL: ' + (data.error || 'PRØV IGJEN');
-    }
-  } catch (e) {
-    document.getElementById('statusTxt').textContent = 'NETTVERKSFEIL';
-  }
-}
-
-// Try to restore session from saved refresh token
-(function tryRestore() {
-  const rt = localStorage.getItem('sp_refresh');
-  if (rt) {
-    refreshToken = rt;
-    doRefresh().then(ok => { if (ok) onLoggedIn(); });
-  }
+// Try restore session
+(function tryRestore(){
+  const rt=localStorage.getItem('sp_refresh');
+  if(rt){refreshToken=rt;doRefresh().then(ok=>{if(ok)onLoggedIn();});}
 })();
 
-async function doRefresh() {
-  try {
-    const resp = await fetch('https://accounts.spotify.com/api/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ grant_type: 'refresh_token', refresh_token: refreshToken, client_id: CLIENT_ID })
-    });
-    const data = await resp.json();
-    if (data.access_token) {
-      accessToken = data.access_token;
-      tokenExpiry = Date.now() + data.expires_in * 1000;
-      if (data.refresh_token) { refreshToken = data.refresh_token; localStorage.setItem('sp_refresh', refreshToken); }
-      return true;
-    }
-  } catch (e) {}
-  return false;
+async function startLogin(){
+  codeVerifier=rndStr(128);
+  localStorage.setItem('cv',codeVerifier);
+  const challenge=b64url(await sha256(codeVerifier));
+  const state=rndStr(16);
+  localStorage.setItem('sp_state',state);
+  const url=`https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${encodeURIComponent(SCOPES)}&state=${state}&code_challenge_method=S256&code_challenge=${challenge}`;
+  document.getElementById('statusTxt').textContent='ÅPNER SPOTIFY...';
+  try{
+    pollWindow=window.open(url,'sp_auth','width=500,height=700,noopener=no');
+    if(!pollWindow||pollWindow.closed)throw new Error();
+    document.getElementById('statusTxt').textContent='VENTER PÅ INNLOGGING...';
+    const iv=setInterval(async()=>{
+      const code=localStorage.getItem('sp_code');
+      if(code){clearInterval(iv);localStorage.removeItem('sp_code');codeVerifier=localStorage.getItem('cv');
+      if(pollWindow&&!pollWindow.closed)pollWindow.close();
+      document.getElementById('statusTxt').textContent='KOBLER TIL...';
+      await exchangeCode(code);}
+    },500);
+  }catch(e){window.location.href=url;}
 }
 
-function onLoggedIn() {
-  document.getElementById('loginOverlay').style.display = 'none';
-  startPollingSpotify();
+async function exchangeCode(code){
+  try{
+    const r=await fetch('https://accounts.spotify.com/api/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'authorization_code',code,redirect_uri:REDIRECT_URI,client_id:CLIENT_ID,code_verifier:codeVerifier})});
+    const d=await r.json();
+    if(d.access_token){
+      accessToken=d.access_token;tokenExpiry=Date.now()+d.expires_in*1000;
+      if(d.refresh_token){refreshToken=d.refresh_token;localStorage.setItem('sp_refresh',refreshToken);}
+      localStorage.removeItem('cv');onLoggedIn();
+    }else{document.getElementById('statusTxt').textContent='FEIL — PRØV IGJEN';}
+  }catch(e){document.getElementById('statusTxt').textContent='NETTVERKSFEIL';}
+}
+
+async function doRefresh(){
+  try{
+    const r=await fetch('https://accounts.spotify.com/api/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'refresh_token',refresh_token:refreshToken,client_id:CLIENT_ID})});
+    const d=await r.json();
+    if(d.access_token){accessToken=d.access_token;tokenExpiry=Date.now()+d.expires_in*1000;if(d.refresh_token){refreshToken=d.refresh_token;localStorage.setItem('sp_refresh',refreshToken);}return true;}
+  }catch(e){}return false;
+}
+
+function onLoggedIn(){
+  document.getElementById('loginOverlay').style.display='none';
+  fetchCurrentTrack();setInterval(fetchCurrentTrack,3000);
   startDemoSpectrum();
 }
 
-// ── SPOTIFY API ──
-async function spFetch(endpoint, method = 'GET', body = null) {
-  if (Date.now() > tokenExpiry - 30000) await doRefresh();
-  const opts = { method, headers: { Authorization: `Bearer ${accessToken}` } };
-  if (body) { opts.headers['Content-Type'] = 'application/json'; opts.body = JSON.stringify(body); }
-  try {
-    const r = await fetch(`https://api.spotify.com/v1${endpoint}`, opts);
-    if (r.status === 204 || r.status === 202) return null;
-    if (!r.ok) return null;
-    return await r.json();
-  } catch (e) { return null; }
+async function spFetch(ep,method='GET',body=null){
+  if(Date.now()>tokenExpiry-30000)await doRefresh();
+  const opts={method,headers:{Authorization:`Bearer ${accessToken}`}};
+  if(body){opts.headers['Content-Type']='application/json';opts.body=JSON.stringify(body);}
+  try{const r=await fetch(`https://api.spotify.com/v1${ep}`,opts);if(r.status===204||r.status===202)return null;if(!r.ok)return null;return await r.json();}catch{return null;}
 }
 
-async function fetchCurrentTrack() {
-  const data = await spFetch('/me/player/currently-playing');
-  if (!data || !data.item) return;
-  isPlaying = data.is_playing;
-  document.getElementById('playBtn').textContent = isPlaying ? '▶ II' : '▶';
-  const track = data.item;
-  if (track.id !== currentTrackId) {
-    currentTrackId = track.id;
-    setSongDisplay(track.name, track.artists.map(a => a.name).join(', '));
-    fetchAudioFeatures(track.id);
+async function fetchCurrentTrack(){
+  const d=await spFetch('/me/player/currently-playing');
+  if(!d||!d.item)return;
+  isPlaying=d.is_playing;
+  if(d.item.id!==currentTrackId){
+    currentTrackId=d.item.id;
+    setSongDisplay(d.item.name,d.item.artists.map(a=>a.name).join(', '));
+    fetchFeatures(d.item.id);
   }
 }
-
-async function fetchAudioFeatures(id) {
-  const data = await spFetch(`/audio-features/${id}`);
-  if (!data) return;
-  currentEnergy = data.energy || 0.5;
-  currentTempo = data.tempo || 120;
+async function fetchFeatures(id){
+  const d=await spFetch(`/audio-features/${id}`);
+  if(d){currentEnergy=d.energy||0.5;currentTempo=d.tempo||120;}
+}
+async function spotifyNext(){await spFetch('/me/player/next','POST');setTimeout(fetchCurrentTrack,600);}
+async function spotifyPrev(){await spFetch('/me/player/previous','POST');setTimeout(fetchCurrentTrack,600);}
+async function spotifyPlayPause(){
+  await spFetch(isPlaying?'/me/player/pause':'/me/player/play','PUT');
+  isPlaying=!isPlaying;
 }
 
-function startPollingSpotify() { fetchCurrentTrack(); setInterval(fetchCurrentTrack, 3000); }
-async function spotifyNext() { await spFetch('/me/player/next', 'POST'); setTimeout(fetchCurrentTrack, 600); }
-async function spotifyPrev() { await spFetch('/me/player/previous', 'POST'); setTimeout(fetchCurrentTrack, 600); }
-async function spotifyPlayPause() {
-  await spFetch(isPlaying ? '/me/player/pause' : '/me/player/play', 'PUT');
-  isPlaying = !isPlaying;
-  document.getElementById('playBtn').textContent = isPlaying ? '▶ II' : '▶';
-}
-
-// ── SCROLL ──
-function startScroll(text) {
-  const el = document.getElementById('displayText');
-  const tr = document.getElementById('scrollTrack');
-  el.textContent = text; tr.style.transform = 'translateX(0)'; scrollX = 0;
-  if (scrollAnim) cancelAnimationFrame(scrollAnim);
-  requestAnimationFrame(() => {
-    const tw = el.offsetWidth, cw = tr.parentElement.offsetWidth;
-    if (tw <= cw) { tr.style.transform = 'translateX(0)'; return; }
-    function step() { scrollX += speed; if (scrollX > tw + 50) scrollX = -cw; tr.style.transform = `translateX(${-scrollX}px)`; scrollAnim = requestAnimationFrame(step); }
-    scrollAnim = requestAnimationFrame(step);
+// Scroll
+function startScroll(text){
+  const el=document.getElementById('songText'),tr=document.getElementById('scrollTrack');
+  el.textContent=text;tr.style.transform='translateX(0)';scrollX=0;
+  if(scrollAnim)cancelAnimationFrame(scrollAnim);
+  requestAnimationFrame(()=>{
+    const tw=el.offsetWidth,cw=tr.parentElement.offsetWidth;
+    if(tw<=cw){tr.style.transform='translateX(0)';return;}
+    function step(){scrollX+=speed;if(scrollX>tw+60)scrollX=-cw;tr.style.transform=`translateX(${-scrollX}px)`;scrollAnim=requestAnimationFrame(step);}
+    scrollAnim=requestAnimationFrame(step);
   });
 }
-
-function setSongDisplay(title, artist) {
-  _title = title.toUpperCase(); _artist = artist.toUpperCase();
-  showArtist = false; if (flipTimer) clearInterval(flipTimer);
+function setSongDisplay(title,artist){
+  _title=title.toUpperCase();_artist=artist.toUpperCase();
+  showArtist=false;if(flipTimer)clearInterval(flipTimer);
   startScroll(_title);
-  flipTimer = setInterval(() => { showArtist = !showArtist; startScroll(showArtist ? _artist : _title); }, 5000);
+  flipTimer=setInterval(()=>{showArtist=!showArtist;startScroll(showArtist?_artist:_title);},5000);
 }
 
-// ── SPECTRUM ──
-function buildGrid() {
-  const g = document.getElementById('specGrid'); g.innerHTML = '';
-  for (let b = 0; b < BANDS; b++) {
-    const col = document.createElement('div'); col.className = 'bar-col';
-    for (let r = 0; r < ROWS; r++) { const px = document.createElement('div'); px.className = 'px-block'; px.id = `px_${b}_${r}`; col.appendChild(px); }
+// Spectrum
+function buildGrid(){
+  const g=document.getElementById('specGrid');g.innerHTML='';
+  for(let b=0;b<BANDS;b++){
+    const col=document.createElement('div');col.className='bar-col';
+    for(let r=0;r<ROWS;r++){const px=document.createElement('div');px.className='px-block';px.id=`px_${b}_${r}`;col.appendChild(px);}
     g.appendChild(col);
   }
 }
 buildGrid();
 
-function colorRow(rfb, rows) { const p = rfb / rows; if (p < 0.55) return 'g'; if (p < 0.72) return 'y'; if (p < 0.88) return 'o'; return 'r'; }
+function colorRow(rfb,rows){const p=rfb/rows;if(p<0.55)return'g';if(p<0.72)return'y';if(p<0.88)return'o';return'r';}
 
-function renderSpectrum(levels) {
-  for (let b = 0; b < BANDS; b++) {
-    const lit = Math.round(levels[b] * ROWS), peak = Math.round(peakHold[b] * ROWS);
-    for (let r = 0; r < ROWS; r++) {
-      const px = document.getElementById(`px_${b}_${r}`); if (!px) continue;
-      const rfb = ROWS - 1 - r; px.className = 'px-block';
-      if (rfb < lit) px.classList.add(colorRow(rfb, ROWS));
-      if (rfb === peak && peakHold[b] > 0.05) px.className = 'px-block pk';
+function renderSpectrum(levels){
+  for(let b=0;b<BANDS;b++){
+    const lit=Math.round(levels[b]*ROWS),peak=Math.round(peakHold[b]*ROWS);
+    for(let r=0;r<ROWS;r++){
+      const px=document.getElementById(`px_${b}_${r}`);if(!px)continue;
+      const rfb=ROWS-1-r;px.className='px-block';
+      if(rfb<lit)px.classList.add(colorRow(rfb,ROWS));
+      if(rfb===peak&&peakHold[b]>0.05)px.className='px-block pk';
     }
   }
 }
 
-function startDemoSpectrum() {
-  if (specAnim) cancelAnimationFrame(specAnim);
-  function frame() {
-    const t = Date.now() / 1000, bps = currentTempo / 60, levels = [];
-    for (let b = 0; b < BANDS; b++) {
-      const base = Math.sin(t * 1.3 + b * 0.55) * 0.22 + 0.22;
-      const kick = b < 3 ? Math.abs(Math.sin(t * bps * Math.PI)) * 0.6 * currentEnergy : 0;
-      const hi = b > 15 ? Math.abs(Math.sin(t * (bps * 1.5) + b)) * 0.2 * currentEnergy : 0;
-      const mid = b > 7 && b < 13 ? Math.abs(Math.sin(t * bps * 0.5)) * 0.35 * currentEnergy : 0;
-      smoothed[b] = smoothed[b] * 0.78 + (base + kick + hi + mid) * 0.22;
-      const lv = Math.min(1, smoothed[b] * 1.3); levels.push(lv);
-      if (lv > peakHold[b]) { peakHold[b] = lv; peakTimer[b] = 0; }
-      else { peakTimer[b]++; if (peakTimer[b] > 35) peakHold[b] = Math.max(0, peakHold[b] - 0.012); }
+function startDemoSpectrum(){
+  if(specAnim)cancelAnimationFrame(specAnim);
+  function frame(){
+    const t=Date.now()/1000,bps=currentTempo/60,lv=[];
+    for(let b=0;b<BANDS;b++){
+      const base=Math.sin(t*1.3+b*0.55)*0.22+0.22;
+      const kick=b<4?Math.abs(Math.sin(t*bps*Math.PI))*0.65*currentEnergy:0;
+      const hi=b>20?Math.abs(Math.sin(t*(bps*1.5)+b))*0.2*currentEnergy:0;
+      const mid=b>9&&b<16?Math.abs(Math.sin(t*bps*0.5))*0.35*currentEnergy:0;
+      smoothed[b]=smoothed[b]*0.78+(base+kick+hi+mid)*0.22;
+      const l=Math.min(1,smoothed[b]*1.3);lv.push(l);
+      if(l>peakHold[b]){peakHold[b]=l;peakTimer[b]=0;}
+      else{peakTimer[b]++;if(peakTimer[b]>35)peakHold[b]=Math.max(0,peakHold[b]-0.012);}
     }
-    renderSpectrum(levels); specAnim = requestAnimationFrame(frame);
+    renderSpectrum(lv);specAnim=requestAnimationFrame(frame);
   }
-  specAnim = requestAnimationFrame(frame);
+  specAnim=requestAnimationFrame(frame);
 }
 
-// ── MIC ──
-async function toggleMic() {
-  const btn = document.getElementById('micBtn');
-  if (micActive) {
-    micActive = false;
-    if (audioCtx) { audioCtx.close(); audioCtx = null; analyser = null; dataArray = null; }
-    btn.textContent = 'MIC'; btn.classList.remove('active');
-    startDemoSpectrum(); return;
+async function toggleMic(){
+  const btn=document.getElementById('micBtn');
+  if(micActive){
+    micActive=false;
+    if(audioCtx){audioCtx.close();audioCtx=null;analyser=null;dataArray=null;}
+    btn.textContent='MIC';btn.classList.remove('active');
+    startDemoSpectrum();return;
   }
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 256; analyser.smoothingTimeConstant = 0.8;
-    dataArray = new Uint8Array(analyser.frequencyBinCount);
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true,video:false});
+    audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    analyser=audioCtx.createAnalyser();analyser.fftSize=512;analyser.smoothingTimeConstant=0.8;
+    dataArray=new Uint8Array(analyser.frequencyBinCount);
     audioCtx.createMediaStreamSource(stream).connect(analyser);
-    micActive = true; btn.textContent = 'MIC✓'; btn.classList.add('active');
-    if (specAnim) cancelAnimationFrame(specAnim);
-    function frame() {
-      if (!analyser || !dataArray) return;
+    micActive=true;btn.textContent='MIC ✓';btn.classList.add('active');
+    if(specAnim)cancelAnimationFrame(specAnim);
+    function frame(){
+      if(!analyser||!dataArray)return;
       analyser.getByteFrequencyData(dataArray);
-      const bufLen = dataArray.length, levels = [];
-      for (let b = 0; b < BANDS; b++) {
-        const lo = Math.floor(b / BANDS * bufLen * 0.75);
-        const hi = Math.floor((b + 1) / BANDS * bufLen * 0.75);
-        let sum = 0; for (let i = lo; i < hi; i++) sum += dataArray[i];
-        const raw = (hi > lo ? sum / (hi - lo) : 0) / 255;
-        smoothed[b] = smoothed[b] * 0.7 + raw * 0.3;
-        const lv = Math.min(1, smoothed[b] * 1.6); levels.push(lv);
-        if (lv > peakHold[b]) { peakHold[b] = lv; peakTimer[b] = 0; }
-        else { peakTimer[b]++; if (peakTimer[b] > 28) peakHold[b] = Math.max(0, peakHold[b] - 0.018); }
+      const bufLen=dataArray.length,lv=[];
+      for(let b=0;b<BANDS;b++){
+        const lo=Math.floor(b/BANDS*bufLen*0.75),hi=Math.floor((b+1)/BANDS*bufLen*0.75);
+        let sum=0;for(let i=lo;i<hi;i++)sum+=dataArray[i];
+        const raw=(hi>lo?sum/(hi-lo):0)/255;
+        smoothed[b]=smoothed[b]*0.7+raw*0.3;
+        const l=Math.min(1,smoothed[b]*1.7);lv.push(l);
+        if(l>peakHold[b]){peakHold[b]=l;peakTimer[b]=0;}
+        else{peakTimer[b]++;if(peakTimer[b]>28)peakHold[b]=Math.max(0,peakHold[b]-0.018);}
       }
-      renderSpectrum(levels); specAnim = requestAnimationFrame(frame);
+      renderSpectrum(lv);specAnim=requestAnimationFrame(frame);
     }
-    specAnim = requestAnimationFrame(frame);
-  } catch (e) {
-    btn.textContent = 'NEKTET';
-    setTimeout(() => { btn.textContent = 'MIC'; }, 2000);
-  }
+    specAnim=requestAnimationFrame(frame);
+  }catch(e){btn.textContent='NEKTET';setTimeout(()=>{btn.textContent='MIC';},2000);}
 }
-
-// ── DOTS + NUM BTNS ──
-const dotPat = [1,1,0,1,1,0,1,1,1,0,1,0,1,0,1,1];
-const dotsEl = document.getElementById('dots');
-dotPat.forEach(on => { const d = document.createElement('div'); d.className = 'dot' + (on ? ' on' : ' dim'); dotsEl.appendChild(d); });
-const nb = document.getElementById('numBtns');
-for (let i = 1; i <= 6; i++) { const b = document.createElement('button'); b.className = 'num-btn'; b.textContent = i; nb.appendChild(b); }
 
 startDemoSpectrum();
 </script>
